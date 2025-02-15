@@ -1,0 +1,67 @@
+package w1;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Stack;
+
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        Stack<Integer> stack = new Stack<>();
+
+        int n = Integer.parseInt(br.readLine()); // 명령 수
+        
+        //이 문제는 push,peek,pop,size,isempty를 사용해 stack과 함꼐 풀수 있다
+       
+
+        for (int i = 0; i < n; i++) {
+        	try {
+            String[] command = br.readLine().split(" ");
+
+            switch (command[0]/*command[0]이 1이냐 2냐...라는 case문 */) {
+                case "push":  // 1 X: 정수 X를 스택에 넣는다.
+                    int x = Integer.parseInt(command[1]);
+                    stack.push(x);
+                    break;
+                case "pop":  // 2: 스택의 맨 위 정수를 빼고 출력한다.
+                    if (stack.isEmpty()) {
+                        sb.append(-1).append("\n");
+                    } else {
+                        sb.append(stack.pop()).append("\n");
+                    }
+                    break;
+
+                case "size":  // 3: 스택에 들어있는 정수의 개수를 출력한다.
+                    sb.append(stack.size()).append("\n");
+                    break;
+
+                case "empty":  // 4: 스택이 비어있으면 1, 아니면 0을 출력한다.
+                    sb.append(stack.isEmpty() ? 1 : 0).append("\n");
+                    break;
+
+                case "top":  // 5: 스택의 맨 위 정수를 출력한다.
+                    if (stack.isEmpty())/*isEmoty 스택이 비어있는지 확인*/ {
+                        sb.append(-1).append("\n");
+                    } else {
+                        sb.append(stack.peek()).append("\n");
+                    }
+                    break;
+            }
+            
+        	
+        	}catch (NumberFormatException e){
+        			System.out.println("NumberFormatException 숫자 형식이 맞지 않을 때 발생하는 예외");
+        		}
+        	
+    
+       // System.out.print(sb.toString());
+        
+        }
+
+
+        
+    }
+}
+
